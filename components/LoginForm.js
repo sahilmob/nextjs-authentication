@@ -2,8 +2,8 @@ import { loginUser } from "../lib/auth";
 
 export class LoginForm extends React.Component {
 	state = {
-		email: "",
-		password: ""
+		email: "Sincere@april.biz",
+		password: "hildegard.org"
 	};
 
 	handleChange = event => {

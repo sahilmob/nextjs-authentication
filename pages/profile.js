@@ -22,4 +22,4 @@ export default class profile extends React.Component {
 	}
 }
 
-profile.getInitialProps = authInitialProps();
+profile.getInitialProps = authInitialProps(true);

@@ -47,6 +47,11 @@ app.prepare().then(() => {
 		res.json(userData);
 	});
 
+	server.get("/api/logout", (req, res) => {
+		res.clearCookie("token", COOKIE_OPTIONS);
+		res.send(204);
+	});
+
 	server.get("/api/profile", async (req, res) => {
 		// if no signedCookies, the default is empty object
 		const { signedCookies = {} } = req;

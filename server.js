@@ -3,6 +3,8 @@ const express = require("express");
 const axios = require("axios");
 const cookieParser = require("cookie-parser");
 
+import { api } from "./costants";
+
 const dev = process.env.NODE_ENV !== "production";
 const port = process.env.PORT || 3000;
 
@@ -17,9 +19,7 @@ const COOKIE_OPTIONS = {
 };
 
 const authenticate = async (email, password) => {
-	const { data } = await axios.get(
-		"https://jsonplaceholder.typicode.com/users"
-	);
+	const { data } = await axios.get(api);
 	return data.find(user => {
 		if (user.email === email && user.website === password) {
 			return user;
@@ -57,9 +57,7 @@ app.prepare().then(() => {
 		const { signedCookies = {} } = req;
 		const { token } = signedCookies;
 		if (token && token.email) {
-			const { data } = await axios.get(
-				"https://jsonplaceholder.typicode.com/users"
-			);
+			const { data } = await axios.get(api);
 			const userProfile = data.find(user => user.email === token.email);
 			return res.json({ user: userProfile });
 		}
